@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes, { object } from 'prop-types'
 const StoreContext = React.createContext({});
-export const connect = (mapStateToProps, mapDispatchToProps) => WrapComponent => {
+export const connect = (mapStateToProps?: (state: object) => object, mapDispatchToProps?: object) => WrapComponent => {
   return class extends Component {
     static contextType = StoreContext;
     render() {
@@ -10,7 +10,12 @@ export const connect = (mapStateToProps, mapDispatchToProps) => WrapComponent =>
     } 
   }
 }
-export class Provider extends Component {
+
+interface ProviderProps {
+  store?: any
+}
+
+export class Provider extends Component<ProviderProps, any> {
   render() {
     return <StoreContext.Provider value={this.props.store}>{this.props.children}</StoreContext.Provider>
   }

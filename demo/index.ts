@@ -1,7 +1,10 @@
-const createStore =  require('./my-redux')
+import createStore from '../simply-redux/index'
 const ADD_LEG = 'ADD_LEG'
 const DECREASE_LEG = 'DECREASE_LEG'
-function legReducer(state=0, action){
+interface Action {
+  type: string
+}
+function legReducer(state: any = 0, action: Action){
   console.log(state, action.type)
   switch(action.type) {
     case ADD_LEG:
