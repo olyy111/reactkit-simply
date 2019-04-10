@@ -8,8 +8,9 @@ interface Store {
   dispatch: (action: object) => any,
   subscribe: (fn: Func) => void
 }
+
 export default function createStore(reducer: Reducer) : Store {
-  let currentState
+  let currentState: any
   const listeners = []
   const initType = '@@@/a.b.n.c.d'
   function getState() {
