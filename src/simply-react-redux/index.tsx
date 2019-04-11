@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes, { object } from 'prop-types'
 const StoreContext = React.createContext({});
-export const connect = (mapStateToProps?: (state: object) => object, mapDispatchToProps?: object) => WrapComponent => {
+export const connect = (mapStateToProps: (state: object) => object, mapDispatchToProps?: object) => (WrapComponent: any) => {
   return class extends Component {
     static contextType = StoreContext;
     render() {

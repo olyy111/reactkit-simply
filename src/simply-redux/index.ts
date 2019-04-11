@@ -1,25 +1,25 @@
 type Reducer = (state: any, action: object) => any
-type Func = () => void | any
+type Function = () => void | any
 interface Action {
   type: string
 }
 interface Store {
   getState: () => any,
-  dispatch: (action: object) => any,
-  subscribe: (fn: Func) => void
+  dispatch: (state: any, action: Action) => any,
+  subscribe: (fn: Function) => void
 }
 
 export default function createStore(reducer: Reducer) : Store {
   let currentState: any
-  const listeners = []
+  const listeners: Function[] = []
   const initType = '@@@/a.b.n.c.d'
   function getState() {
     return currentState
   }
-  function subscribe(fn: Func) {
+  function subscribe(fn: any) {
     listeners.push(fn)
   }
-  function dispatch(action: Action) {
+  function dispatch(action: any) {
     currentState = reducer(currentState, action)
     listeners.forEach(fn => { fn() })
   }
